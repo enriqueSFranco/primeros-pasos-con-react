@@ -39,28 +39,37 @@ const Board = () => {
     setWinner(null)
   }
 
-  function handleUpdateBoard ({ squareIdx }: { squareIdx: number }) {
-    // evitar reasignaciones o si hay ganador detenemos el juego
-    if (board[squareIdx] || winner) return
-
-    const newBoard = [...board]
-    // actualiazamos el board
-    newBoard[squareIdx] = turn
-    updateBoard(newBoard)
-    window.localStorage.setItem('board', JSON.stringify(newBoard))
-    // detectar al ganador
-    const gameWinner = checkWinner({ currentBoard: newBoard })
-
-    setWinner(gameWinner) // el estado es asincrono
-
-    // actualizamos el turno
+  function updatedTurn ({ turn }: { turn: string }) {
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     updateTurn(newTurn)
     window.localStorage.setItem('turn', JSON.stringify(newTurn))
   }
 
+  function updatedBoard ({ board, squareIdx }) {
+    const newBoard = [...board]
+    newBoard[squareIdx] = turn
+    updateBoard(newBoard)
+    window.localStorage.setItem('board', JSON.stringify(newBoard))
+    return newBoard
+  }
+
+  function handleUpdateBoard ({ squareIdx }: { squareIdx: number }) {
+    // evitar reasignaciones o si hay ganador detenemos el juego
+    if (board[squareIdx] || winner) return
+
+    // actualiazamos el board
+    const newBoard = updatedBoard({ board, squareIdx })
+
+    // obtener al ganador
+    const gameWinner = checkWinner({ currentBoard: newBoard })
+    setWinner(gameWinner) // el estado es asincrono
+
+    // actualizamos el turno
+    updatedTurn({ turn })
+  }
+
   const gameOver = endGame({ currentBoard: board })
-  console.log(gameOver)
+
   return (
     <>
       <div className={styles.container}>
