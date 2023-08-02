@@ -1,9 +1,17 @@
 import './App.css'
+import { type User as UserType } from './shared/types'
+import BaseButton from './components/BaseButton'
+import Title from './components/Title'
+import User from './components/User'
+
+const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
 function App () {
   return (
     <>
-      <h1>Hello World</h1>
+      <Title />
+      <BaseButton />
+      <User {...user} />
     </>
   )
 }
