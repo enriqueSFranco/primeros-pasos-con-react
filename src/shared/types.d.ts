@@ -4,3 +4,8 @@ export interface User {
   username: string
   email: string
 }
+
+export enum TURNS {
+  X = 'X',
+  O = 'O'
+}
