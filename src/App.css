@@ -1,6 +1,55 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
   padding: 2rem;
   text-align: center;
+}
+
+.tw-card {
+  width: 250px;
+  height: 100px;
+  padding: 16px;
+  background-color: #00000022;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  outline: 1px solid #363535;
+  border-radius: 4px;
+}
+
+.tw-card__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tw-card__avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tw-card__button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tw-card__button button {
+  width: 70px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tw-card__button button.following {
+  background-color: #0073ff;
+  color: #fff;
 }
