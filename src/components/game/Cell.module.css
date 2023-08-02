@@ -1,0 +1,14 @@
+.square {
+  width: 70px;
+  height: 70px;
+  outline: 1px solid #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+}
+
+.square.selected {
+  background-color: #ffffff1a;
+  transition: background-color .3s ease;
+}
