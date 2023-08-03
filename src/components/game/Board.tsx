@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { INITIAL_BOARD, WINNER_COMBOS } from "../../shared/constants.d"
-import { TURNS } from "../../shared/types.d"
+import { INITIAL_BOARD, WINNER_COMBOS } from "../../shared/constants"
+import { TURNS } from "../../shared/types"
 import Square from "./Cell"
 import Modal from "./Modal"
 import styles from './Board.module.css'
