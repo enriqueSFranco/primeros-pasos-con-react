@@ -13,7 +13,7 @@ const CardCat: React.FC<CardCatProps> = ({ baseUrl, cat, fact, loading }) => {
     <figure className={styles.card}>
       <img src={`${baseUrl}/${cat}`} alt={`cat-${fact}`} />
       <figcaption className={styles.footer_card}>
-        {loading ? (<div>cargado fact</div>) : (<p>{fact}</p>)}
+        {loading ? (<div>cargado fact</div>) : (<p data-fact>{fact}</p>)}
       </figcaption>
     </figure>
   )
