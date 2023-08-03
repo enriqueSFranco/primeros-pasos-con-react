@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { type User as UserType } from './shared/types'
+import Counter from './components/Counter'
+import Title from './components/Title'
+import User from './components/User'
+import Game from './views/Game'
+import RenderConditional from './RenderConditional'
+import InterviewOne from './views/InterviewOne'
 
-function App() {
-  const [count, setCount] = useState(0)
+const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
+function App () {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+      {/* COMPONENTES*/}
+      <Title />
+
+      {/* INICIALIZAR UN STATE CON LAS PROPS */}
+      <Counter />
+
+      {/* RENDER CONDITIONAL */}
+      <RenderConditional isAdmin />
+
+      {/* CARD */}
+      <User {...user} />
+
+      {/* JUEGO DE GATO */}
+      <Game />
+
+      {/* INTERVIEW ONE */}
+      <InterviewOne />
+    </main>
   )
 }
 

@@ -1,42 +1,66 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+main {
+  display: grid;
+  place-items: center;
+  gap: 2rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tw-card {
+  width: 250px;
+  height: 100px;
+  padding: 16px;
+  background-color: #00000022;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  outline: 1px solid #363535;
+  border-radius: 4px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.tw-card__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.card {
-  padding: 2em;
+.tw-card__avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.read-the-docs {
-  color: #888;
+.tw-card__button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tw-card__button button {
+  width: 70px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tw-card__button button.following {
+  background-color: #0073ff;
+  color: #fff;
+}
+
+/* STYLES FOR INTERVIEW ONE */
+.container_app_one {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

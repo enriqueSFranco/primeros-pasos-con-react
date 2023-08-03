@@ -1,0 +1,32 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 32px;
+}
+
+.foooter_turns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.container_winner {
+  overflow: hidden;
+  border-radius: 4px;
+  padding: 16px;
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+
+.winner {
+  margin: 0;
+  background-color: #00ff0d5b;
+}
