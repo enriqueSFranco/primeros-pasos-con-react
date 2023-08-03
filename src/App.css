@@ -56,3 +56,11 @@ main {
   background-color: #0073ff;
   color: #fff;
 }
+
+/* STYLES FOR INTERVIEW ONE */
+.container_app_one {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
