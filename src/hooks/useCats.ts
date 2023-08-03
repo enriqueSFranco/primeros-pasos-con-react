@@ -2,22 +2,24 @@ import { useEffect, useState } from "react"
 import { Fact } from "../shared/types.d"
 import { getCat } from "../services/getCat"
 
-export function useCats ({ initialFactSlice }: { initialFactSlice: Fact["fact"] }) {
-  const [cat, updateCat] = useState(initialFactSlice)
+export function useCats ({ factSlice }: { factSlice: Fact["fact"] }) {
+  const [cat, updateCat] = useState<Fact["fact"]>("")
   const [loading, updateLoading] = useState(false)
 
   useEffect(() => {
-    getCat({ fact: initialFactSlice })
+    getCat({ fact: factSlice })
       .then(response => {
         updateLoading(true)
-        updateCat(response?.url)
+        if (response) {
+          updateCat(response.url)
+        }
       })
       .catch(error => {
         if (error instanceof Error) {
           throw new Error(`Error: ${error.message}`)
         }
       }).finally(() => updateLoading(false))
-  }, [initialFactSlice])
+  }, [factSlice])
 
   return { cat, loading }
 }
