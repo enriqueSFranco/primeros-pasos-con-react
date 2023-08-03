@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# Curso de React + TypeScript
 
 ## Prueba técnica para Juniors y Trainees de React en Live Coding.
 APIs:
@@ -12,3 +12,4 @@ APIs:
 - Recuperar la primera palabra del hecho ✅
 
 - Muestra una imagen de un gato con la primera palabra.
+
