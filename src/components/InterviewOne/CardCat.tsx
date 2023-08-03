@@ -8,9 +8,10 @@ interface CardCatProps {
 }
 
 const CardCat: React.FC<CardCatProps> = ({ baseUrl, cat, fact, loading }) => {
+  if (!fact) return null
   return (
     <figure className={styles.card}>
-      <img src={`${baseUrl}/${cat}&width=100&height=100`} alt={`cat-${fact}`} />
+      <img src={`${baseUrl}/${cat}`} alt={`cat-${fact}`} />
       <figcaption className={styles.footer_card}>
         {loading ? (<div>cargado fact</div>) : (<p>{fact}</p>)}
       </figcaption>
@@ -19,3 +20,5 @@ const CardCat: React.FC<CardCatProps> = ({ baseUrl, cat, fact, loading }) => {
 }
 
 export default CardCat
+
+// https://cataas.com/Purring 
