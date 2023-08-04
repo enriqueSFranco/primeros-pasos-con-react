@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import type { Book, Library } from '@/shared/types.d'
-import { FilterBooks } from '@/utilities/FilterBooks'
+import type { Book, Library as LibraryType } from '@/shared/types.d'
+import { FilterBooks, Library } from '@/utilities'
 import data from '@/mocks/books.json'
 
 interface LibraryState {
@@ -11,7 +11,7 @@ interface LibraryState {
 }
 
 export const useLibrary = create<LibraryState>((set, get) => ({
-  library: data,
+  library: new Library(data),
   filterInstance: new FilterBooks({ books: data }),
   findBook: ({ title }: { title: Book['title'] }) => {
     const { filterInstance } = get()

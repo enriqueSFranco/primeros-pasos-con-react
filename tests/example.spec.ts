@@ -1,18 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+const LOCALHOST_URL = 'http://localhost:5173/'
 
+test('App shows random fact and image', async ({ page }) => {
+  await page.goto(LOCALHOST_URL)
+
+  await page.waitForSelector('p[data-fact]')
   // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
+  const textFact = await page.$eval('p[data-fact]', (element) => element.textContent)
 });

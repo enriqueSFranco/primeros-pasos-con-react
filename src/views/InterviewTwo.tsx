@@ -1,9 +1,8 @@
 import { useLibrary } from '@/stores/library.store'
-import { IconBook, IconBooks } from '@/components/Icon'
 import HeaderLibrary from '@/components/InterviewTwo/HeaderLibrary'
 import Library from '@/components/InterviewTwo/Library'
 import Form from '@/components/InterviewTwo/Form'
-import BookFilter from '@/components/InterviewTwo/BookFilter'
+import FilterBooks from '@/components/InterviewTwo/FilterBooks'
 
 const InterviewTwo = () => {
   const { library, getGenres } = useLibrary(state => ({ library: state.library, getGenres: state.getGenres }))
@@ -19,26 +18,10 @@ const InterviewTwo = () => {
         <aside className='wrapper_library__filters'>
           <Form />
           {/* filtros */}
-          <ul className='library__filters-list'>
-            <li>
-              <BookFilter
-                genre='todos'
-                handleSelectedGenre={handleSelectedGenre}
-              >
-                <IconBooks />
-              </BookFilter>
-            </li>
-            {genres.map(genre => (
-              <li key={`genre-${genre}`}>
-                <BookFilter
-                  genre={genre}
-                  handleSelectedGenre={handleSelectedGenre}
-                >
-                  <IconBook />
-                </BookFilter>
-              </li>
-            ))}
-          </ul>
+          <FilterBooks
+            genres={genres}
+            handleSelectedGenre={handleSelectedGenre}
+          />
         </aside>
         <Library data={library} />
       </main>

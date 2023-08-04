@@ -1,21 +1,19 @@
-import type { Book, Library, LibraryElement } from '@/shared/types.d'
-import library from '@/mocks/books.json'
+import { Library } from './Library'
+import type { Book, Library as LibraryType, LibraryElement } from '@/shared/types.d'
 
-export class FilterBooks {
-  private books: Library = library
-
-  constructor({ books }: { books: Library }) {
-    this.books = books
+export class FilterBooks extends Library {
+  constructor({ books }: { books: LibraryType }) {
+    super(books)
   }
 
   findBook ({ title }: { title: Book['title'] }): LibraryElement[] {
-    const bookMatches = this.books.library.filter(({ book }) => book.title === title)
+    const bookMatches = this.library.library.filter(({ book }) => book.title === title)
     return title.trim().length > 0 ? bookMatches : []
   }
 
   getGenres (): Book["genre"][] {
     const genres: Set<Book["genre"]> = new Set<Book["genre"]>()
-    for (const bookEntry of this.books.library) {
+    for (const bookEntry of this.library.library) {
       const { book } = bookEntry
       genres.add(book.genre)
     }
