@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# Curso de React + TypeScript
 
 ## Prueba técnica para Juniors y Trainees de React en Live Coding.
 APIs:
