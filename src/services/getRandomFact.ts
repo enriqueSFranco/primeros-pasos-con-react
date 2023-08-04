@@ -15,9 +15,8 @@ export async function getRandomFact () {
     }
     const data: Fact = await factResponse.json()
     const { fact } = data
-    const factSlice = fact?.split(' ', 3).join(' ')
 
-    return { fact, factSlice }
+    return fact
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Error: ${error.message}`)

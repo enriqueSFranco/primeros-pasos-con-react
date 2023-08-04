@@ -1,8 +1,11 @@
 import type { Fact, CatFact } from "../shared/types.d"
 
 export async function getCat ({ fact }: { fact: Fact["fact"] }) {
+  if (!fact) return
+
+  const factSlice = fact?.split(' ', 1).join(' ')
   try {
-    const url = new URL(`https://cataas.com/cat/says/${fact}?json=true`)
+    const url = new URL(`https://cataas.com/cat/says/${factSlice}?json=true`)
     const responseCat = await fetch(url)
     if (!responseCat.ok) {
       const error = {

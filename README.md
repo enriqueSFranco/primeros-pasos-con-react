@@ -11,5 +11,4 @@ APIs:
 
 - Recuperar la primera palabra del hecho ✅
 
-- Muestra una imagen de un gato con la primera palabra.
-
+- Muestra una imagen de un gato con la primera palabra. ✅

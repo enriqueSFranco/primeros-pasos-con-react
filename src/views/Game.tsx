@@ -1,5 +1,5 @@
 import Title from "../components/Title"
-import Board from "../components/game/Board"
+import Board from "../components/Game/Board"
 
 const Game = () => {
   return (

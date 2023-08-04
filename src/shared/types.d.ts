@@ -29,3 +29,27 @@ export interface CatFact {
   url: string
 }
 
+// TYPES PARA LA ENTREVISTA BOOKS
+interface Author {
+  name: string,
+  otherBooks: string[]
+}
+
+export interface Library {
+  library: LibraryElement[]
+}
+
+interface LibraryElement {
+  book: Book
+}
+
+export interface Book {
+  title: string,
+  pages: number,
+  genre: string,
+  cover: string,
+  synopsis: string,
+  year: number,
+  ISBN: string,
+  author: Author
+}
