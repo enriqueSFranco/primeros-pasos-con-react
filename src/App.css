@@ -1,10 +1,9 @@
 #root {
-  max-width: 1280px;
   padding: 2rem;
   text-align: center;
 }
 
-main {
+.App {
   display: grid;
   place-items: center;
   gap: 2rem;
@@ -63,4 +62,28 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* STYLES FOR INTERVIEW TWO */
+.interview_tow {
+  width: 100%;
+}
+
+.wrapper_library {
+  width: 100%;
+}
+
+.wrapper_library__filters {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.library__filters-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
