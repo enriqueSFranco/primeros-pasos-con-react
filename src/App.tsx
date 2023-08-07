@@ -29,7 +29,7 @@ function App () {
       <Game />
 
       {/* INTERVIEW ONE */}
-      <InterviewOne />
+      {/* <InterviewOne /> */}
 
       {/* INTERVIEW TWO */}
       <InterviewTwo />

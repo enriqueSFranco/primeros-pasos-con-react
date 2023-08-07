@@ -3,11 +3,14 @@ import Book from './Book'
 import styles from './Library.module.css'
 
 interface LibraryProps {
-  data: Library
+  data: Library | null
 }
 
 const Library: React.FC<LibraryProps> = ({ data }) => {
+  if (!data) return null
+
   const { library } = data
+
   return (
     <article className={styles.wrapper_library}>
       <ul className={styles.book_list}>

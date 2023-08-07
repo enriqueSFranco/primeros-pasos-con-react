@@ -53,3 +53,11 @@ export interface Book {
   ISBN: string,
   author: Author
 }
+
+export enum GENRES {
+  TODOS = 'Todos',
+  FANTASIA = 'Fantasia',
+  CIENCIA_FICCION = 'Ciencia ficción',
+  TERROR = 'Terror',
+  ZOMBIES = 'Zombies'
+}

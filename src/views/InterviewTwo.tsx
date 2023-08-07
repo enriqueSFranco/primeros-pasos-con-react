@@ -5,10 +5,12 @@ import Form from '@/components/InterviewTwo/Form'
 import FilterBooks from '@/components/InterviewTwo/FilterBooks'
 
 const InterviewTwo = () => {
-  const { library, getGenres } = useLibrary(state => ({ library: state.library, getGenres: state.getGenres }))
-  const genres = getGenres()
+  const { library, genres } = useLibrary(state => ({
+    library: state.library,
+    genres: state.genres
+  }))
 
-  function handleSelectedGenre () { }
+  console.log(library)
 
   return (
     <section className='interview_tow'>
@@ -17,11 +19,7 @@ const InterviewTwo = () => {
       <main className='wrapper_library'>
         <aside className='wrapper_library__filters'>
           <Form />
-          {/* filtros */}
-          <FilterBooks
-            genres={genres}
-            handleSelectedGenre={handleSelectedGenre}
-          />
+          {/* <FilterBooks genres={genres} /> */}
         </aside>
         <Library data={library} />
       </main>

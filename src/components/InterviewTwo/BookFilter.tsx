@@ -4,7 +4,7 @@ import styles from './BookFilter.module.css'
 interface BookFilterProps {
   children: React.ReactNode
   genre: Book['genre']
-  handleSelectedGenre: ({ genre }: { genre: Book['genre'] }) => void
+  handleSelectedGenre: (e: React.ChangeEvent<HTMLInputElement>, genre: Book['genre']) => void
 }
 
 const BookFilter: React.FC<BookFilterProps> = ({ children, genre, handleSelectedGenre }) => {
@@ -12,7 +12,7 @@ const BookFilter: React.FC<BookFilterProps> = ({ children, genre, handleSelected
     <figure className={styles.wrapper_book_filter}>
       <div className={styles.book_filter__icon}>
         {children}
-        <input type="radio" name={genre} id={genre} value={genre} onChange={() => handleSelectedGenre({ genre })} />
+        <input type="checkbox" name={genre} id={genre} value={genre} onChange={(e) => handleSelectedGenre(e, genre)} />
       </div>
       <figcaption className={styles.book_filter__text}><span>{genre}</span></figcaption>
     </figure>

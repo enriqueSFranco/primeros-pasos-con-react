@@ -1,4 +1,6 @@
-import { Library } from "./Library"
-import { FilterBooks } from "./FilterBooks"
+import { FilterBooks } from './FilterBooks'
+import { CustomError } from './CustomError'
+import { ReadingList } from './ReadingList'
+import { Library } from './Library'
 
-export { Library, FilterBooks }
+export { CustomError, FilterBooks, Library, ReadingList }

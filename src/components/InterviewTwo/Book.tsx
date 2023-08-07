@@ -13,7 +13,7 @@ const Book: React.FC<BookProps> = ({ book }) => {
         <header className={styles.book_header}>
           <button className={styles.book_btn_save}><IconSave /></button>
         </header>
-        <img src={book.cover} alt={`book-${book.title}`} />
+        <img src={book.cover} alt={`book-${book.title}`} loading='lazy' />
       </div>
       <figcaption className={styles.book_details}>
         <h2>{book.title}</h2>
