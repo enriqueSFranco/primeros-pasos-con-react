@@ -1,6 +1,8 @@
 import { CustomError } from "@/utilities"
 import { Library as LibraryType } from "@/shared/types.d"
 
+// TODO: ELIMINAR
+
 export class Library {
   protected books: LibraryType
 

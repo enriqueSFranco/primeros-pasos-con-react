@@ -1,4 +1,5 @@
 import type { Book, Library } from "@/shared/types.d"
+import { CustomError } from "@/utilities"
 
 function extractGenresFromLibrary ({ library }: Library): Book["genre"][] {
   const uniqueGenres: Set<Book["genre"]> = new Set<Book["genre"]>()
@@ -19,6 +20,23 @@ export async function getAllGenres ({ library }: Library): Promise<Book["genre"]
       throw new Error(`Error: ${error.message}`)
     }
     // manejar otro tipo de error
+    throw new Error("An unexpected error occurred while loading the library.")
+  }
+}
+
+export async function loadingBooks (): Promise<Library> {
+  try {
+    const response = await fetch('api/books.json', { headers: { 'Content-Type': 'application/json' } })
+    if (!response.ok) {
+      throw new CustomError({ statusCode: response.status, statusText: response.statusText })
+    }
+    const data: Library = await response.json()
+    // TODO: MAPEO DE LA INFORMACIÓN
+    return data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Error: ${error.message}`)
+    }
     throw new Error("An unexpected error occurred while loading the library.")
   }
 }

@@ -1,5 +1,5 @@
-import { getAllGenres } from "./getAllGenres"
-import { getCat } from "./getCat"
-import { getRandomFact } from "./getRandomFact"
+import { getCat } from './getCat'
+import { getRandomFact } from './getRandomFact'
+import { loadingBooks, getAllGenres } from './library'
 
-export { getAllGenres, getCat, getRandomFact }
+export { getCat, getRandomFact, loadingBooks, getAllGenres }

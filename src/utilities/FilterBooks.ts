@@ -1,32 +1,28 @@
-import { Book, LibraryElement, Library as LibraryType, GENRES } from '@/shared/types.d'
-import { Library } from '@/utilities'
+import { Book, LibraryElement, Library } from '@/shared/types.d'
 
-export class FilterBooks extends Library {
-  constructor(books: LibraryType) {
-    super(books)
+export class FilterBooks {
+  private books: Library
+
+  constructor(books: Library) {
+    this.books = books
   }
 
-  async findBooksByTitle ({ title }: { title: Book['title'] }): Promise<LibraryElement[]> {
+  getBooks (): Library {
+    return this.books
+  }
+
+  static async findBooksByTitle ({ title, library }: { title: Book['title'], library: Library }): Promise<LibraryElement[]> {
     try {
       const formattedTitle = title.trim().toLowerCase()
       if (!formattedTitle) {
         throw new Error('El título del libro no puede estar vacío.')
       }
-      const { library } = this.books
-      const bookMatches = library.filter(({ book }) => book.title.toLowerCase() === formattedTitle)
+      const { library: books } = library
+      const bookMatches = books.filter(({ book }) => book.title.toLowerCase() === formattedTitle)
 
       return bookMatches
     } catch (error) {
       return []
-    }
-  }
-
-  filterBy (typeFilter: string): LibraryType {
-    if (typeFilter === GENRES.TODOS) {
-      return this.books
-    } else {
-      // TODO: IMPLEMENTAR FILTROS
-      console.log(`filtrar por: ${typeFilter}`)
     }
   }
 }
