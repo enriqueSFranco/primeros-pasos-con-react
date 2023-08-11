@@ -5,8 +5,7 @@ import Title from './components/Title'
 import User from './components/User'
 import Game from './views/Game'
 import RenderConditional from './RenderConditional'
-import InterviewOne from './views/InterviewOne'
-import InterviewTwo from './views/InterviewTwo'
+import AppReadingLinst from './router/routerAppReadingList'
 
 const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
@@ -31,8 +30,7 @@ function App () {
       {/* INTERVIEW ONE */}
       {/* <InterviewOne /> */}
 
-      {/* INTERVIEW TWO */}
-      <InterviewTwo />
+      <AppReadingLinst />
     </div>
   )
 }

@@ -4,11 +4,10 @@ export function IconSave () {
       xmlns='http://www.w3.org/2000/svg'
       width='36'
       height='36'
-      fill='none'
+      fill="#09f"
       viewBox='0 0 24 24'
     >
       <path
-        fill='#e75c62'
         fillRule='evenodd'
         d='M6.75 6l.75-.75h9l.75.75v13.316L12 16.206l-5.25 3.11V6zm1.5.75v9.934L12 14.46l3.75 2.223V6.75h-7.5z'
         clipRule='evenodd'

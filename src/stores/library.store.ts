@@ -1,48 +1,45 @@
 import { create } from 'zustand'
-import type { Book, Library as LibraryType } from '@/shared/types.d'
-import { getAllGenres } from '@/services'
-import { FilterBooks, Library } from '@/utilities'
+import type { Book, Library } from '@/shared/types.d'
+import { getAllGenres, loadingBooks } from '@/services'
+import { FilterBooks } from '@/utilities'
 
 interface LibraryState {
-  library: LibraryType
-  libraryInstance: Library
-  genres: Book['genre'][] | []
+  library: Library
   loading: boolean
-  loadingBooks: () => void
+  genres: Book['genre'][] | []
+  filteredBooks: Library
+  loadingLibrary: () => void
   findBook: ({ title }: { title: Book['title'] }) => void
-  getGenres: () => void
+  loadingGenres: () => void
   filterBy: ({ typeFilter }: { typeFilter: string }) => void
 }
 
 export const useLibrary = create<LibraryState>((set, get) => ({
   library: { library: [] },
-  libraryInstance: new Library({ library: [] }),
   genres: [],
   loading: true,
-  loadingBooks: async () => {
+  filteredBooks: { library: [] },
+  findBook: async ({ title }: { title: Book['title'] }) => {
+    const { library } = get()
+    console.log('👉 findBook')
+    const booksMatched = await FilterBooks.findBooksByTitle({ title, library })
+    set({ filteredBooks: { library: booksMatched } })
+  },
+  loadingLibrary: async () => {
     try {
-      const { libraryInstance } = get()
-      const books = await libraryInstance.loadingBooks()
-      set((state) => ({ ...state, loading: true, library: books }))
+      const books: Library = await loadingBooks()
+      set(state => ({ ...state, library: books, loading: true }))
     } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(`Error: ${error.message}`)
-      }
+      throw new Error('')
     } finally {
-      set((state) => ({ ...state, loading: false }))
+      set(state => ({ ...state, loading: false }))
     }
   },
-  findBook: async ({ title }: { title: Book['title'] }) => {
-    // const { library } = get()
-    // const filterInstance = new FilterBooks({ books: library })
-    // const booksMatched = await filterInstance.findBooksByTitle({ title })
-    // set({ library: { library: booksMatched } })
-  },
-  getGenres: async () => {
+  loadingGenres: async () => {
+    const { library } = get()
+    const books = library.library
     try {
-      const { libraryInstance } = get()
-      const books: LibraryType = await libraryInstance.loadingBooks()
-      const genres: Book['genre'][] = await getAllGenres({ library: books.library })
+      const genres: Book['genre'][] = await getAllGenres({ library: books })
       set((state) => ({ ...state, genres }))
     } catch (error) {
       if (error instanceof Error) {
@@ -54,8 +51,9 @@ export const useLibrary = create<LibraryState>((set, get) => ({
   filterBy: ({ typeFilter }: { typeFilter: string }) => {
     const { library } = get()
     if (library) {
-      const filterInstance = new FilterBooks({ books: library })
-      filterInstance.filterBy(typeFilter)
+      console.log(typeFilter)
+      // const filterInstance = new FilterBooks({ books: library })
+      // filterInstance.filterBy(typeFilter)
     }
   }
 }))
