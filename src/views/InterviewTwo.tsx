@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo } from 'react'
 import { useLibrary } from '@/stores/library.store'
 import HeaderLibrary from '@/components/InterviewTwo/HeaderLibrary'
 import Library from '@/components/InterviewTwo/Library'
-import Form from '@/components/InterviewTwo/Form'
-import FilterBooks from '@/components/InterviewTwo/FilterBooks'
+import LibraryFilters from '@/components/InterviewTwo/LibraryFilters'
 
 const InterviewTwo = () => {
   const { library, loading, genres, filteredBooks, loadingLibrary, loadingGenres } = useLibrary(state => ({
@@ -17,30 +15,24 @@ const InterviewTwo = () => {
   }))
 
   useEffect(() => {
-    loadingLibrary()
+    const init = async () => {
+      const [responseLibrary, responseGenres] = await Promise.all([loadingLibrary(), loadingGenres()])
+      console.log(responseLibrary, responseGenres)
+    }
+    init()
   }, [])
 
-  const hasFilteredBooks = filteredBooks.library.length > 0 ? filteredBooks : library
+  const hasFilteredBooks = useMemo(() => filteredBooks.library.length > 0 ? filteredBooks : library, [filteredBooks, library])
 
   return (
     <section className='interview_tow'>
-      <HeaderLibrary />
+      <HeaderLibrary>
+        <h2>📕books</h2>
+      </HeaderLibrary>
       <main className='wrapper_library'>
-        <header>
-          <aside className='wrapper_library__filters'>
-            <Form />
-            <FilterBooks genres={genres} />
-            <div>
-              {/* TODO: IMPLEMENT SEPARATOR */}
-            </div>
-            <nav>
-              <ul>
-                <li><Link to="/">Biblioteca</Link></li>
-                <li><Link to="/reading-list">Mi lista de lectura</Link></li>
-              </ul>
-            </nav>
-          </aside>
-        </header>
+        <HeaderLibrary>
+          <LibraryFilters genres={genres} />
+        </HeaderLibrary>
         <Library data={hasFilteredBooks} loading={loading} />
       </main>
     </section>

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { Book, Library } from '@/shared/types.d'
+import { GENRES, type Book, type Library } from '@/shared/types.d'
 import { getAllGenres, loadingBooks } from '@/services'
 import { FilterBooks } from '@/utilities'
 
@@ -21,7 +21,6 @@ export const useLibrary = create<LibraryState>((set, get) => ({
   filteredBooks: { library: [] },
   findBook: async ({ title }: { title: Book['title'] }) => {
     const { library } = get()
-    console.log('👉 findBook')
     const booksMatched = await FilterBooks.findBooksByTitle({ title, library })
     set({ filteredBooks: { library: booksMatched } })
   },
@@ -39,8 +38,11 @@ export const useLibrary = create<LibraryState>((set, get) => ({
     const { library } = get()
     const books = library.library
     try {
-      const genres: Book['genre'][] = await getAllGenres({ library: books })
-      set((state) => ({ ...state, genres }))
+      if (library) {
+        const genres: Book['genre'][] = await getAllGenres({ library: books })
+        console.log(library)
+        set((state) => ({ ...state, genres }))
+      }
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Error: ${error.message}`)
@@ -51,7 +53,9 @@ export const useLibrary = create<LibraryState>((set, get) => ({
   filterBy: ({ typeFilter }: { typeFilter: string }) => {
     const { library } = get()
     if (library) {
-      console.log(typeFilter)
+      if (typeFilter === GENRES.TODOS) {
+        set(state => ({ ...state, filteredBooks: library }))
+      }
       // const filterInstance = new FilterBooks({ books: library })
       // filterInstance.filterBy(typeFilter)
     }

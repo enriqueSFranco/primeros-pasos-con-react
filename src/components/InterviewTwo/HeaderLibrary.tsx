@@ -1,7 +1,13 @@
-const HeaderLibrary = () => {
+import styles from './Header.module.css'
+
+interface HeaderLibraryProps {
+  children: React.ReactNode
+}
+
+const HeaderLibrary: React.FC<HeaderLibraryProps> = ({ children }) => {
   return (
-    <header>
-      <h2>📕books</h2>
+    <header className={styles.header}>
+      {children}
     </header>
   )
 }

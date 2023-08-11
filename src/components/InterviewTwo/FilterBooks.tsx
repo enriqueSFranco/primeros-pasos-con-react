@@ -1,19 +1,19 @@
+import { useLibrary } from '@/stores/library.store'
 import { type Book, GENRES } from '@/shared/types.d'
 import BookFilter from './BookFilter'
 import { IconBook, IconBooks } from '../Icon'
-import { useLibrary } from '@/stores/library.store'
 
 interface FilterBookProps {
   genres: Book['genre'][] | []
 }
 
 const FilterBooks: React.FC<FilterBookProps> = ({ genres }) => {
-  // const { filterBy } = useLibrary(state => ({ filterBy: state.filterBy }))
+  const { filterBy } = useLibrary(state => ({ filterBy: state.filterBy }))
 
   function handleSelectedGenre (e: React.ChangeEvent<HTMLInputElement>, genre: string): void {
     const { checked } = e.target
-    console.log(checked, genre)
-    // filterBy({ typeFilter: genre })
+
+    filterBy({ typeFilter: genre })
   }
 
   return (

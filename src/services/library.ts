@@ -1,18 +1,19 @@
 import type { Book, Library } from "@/shared/types.d"
 import { CustomError } from "@/utilities"
 
-function extractGenresFromLibrary ({ library }: Library): Book["genre"][] {
+function extractGenresFromLibrary (library: Library): Book["genre"][] {
   const uniqueGenres: Set<Book["genre"]> = new Set<Book["genre"]>()
-  for (const libraryElement of library) {
+  for (const libraryElement of library.library) {
     const { book } = libraryElement
     uniqueGenres.add(book.genre)
   }
   return Array.from(uniqueGenres)
 }
 
-export async function getAllGenres ({ library }: Library): Promise<Book["genre"][]> {
+export async function getAllGenres (library: Library): Promise<Book["genre"][]> {
   try {
-    const uniqueGenres = extractGenresFromLibrary({ library })
+    console.log(library)
+    const uniqueGenres = extractGenresFromLibrary(library)
     // TODO: Mapear data
     return Array.from(uniqueGenres)
   } catch (error) {
