@@ -11,8 +11,8 @@ function extractGenresFromLibrary (library: Library): Book["genre"][] {
 }
 
 export async function getAllGenres (library: Library): Promise<Book["genre"][]> {
+  console.log(library)
   try {
-    console.log(library)
     const uniqueGenres = extractGenresFromLibrary(library)
     // TODO: Mapear data
     return Array.from(uniqueGenres)
@@ -32,7 +32,7 @@ export async function loadingBooks (): Promise<Library> {
       throw new CustomError({ statusCode: response.status, statusText: response.statusText })
     }
     const data: Library = await response.json()
-    // TODO: MAPEO DE LA INFORMACIÓN
+
     return data
   } catch (error) {
     if (error instanceof Error) {
