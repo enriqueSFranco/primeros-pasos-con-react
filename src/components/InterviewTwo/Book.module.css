@@ -12,6 +12,7 @@
 .wrapper_book img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 16/9;
   object-fit: cover;
 }
 
@@ -44,6 +45,16 @@
   height: 300px;
   overflow: hidden;
   border-radius: 16px;
+  position: relative;
+}
+
+.book_cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000001a;
 }
 
 .book_details {
