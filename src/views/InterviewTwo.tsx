@@ -5,21 +5,16 @@ import Library from '@/components/InterviewTwo/Library'
 import LibraryFilters from '@/components/InterviewTwo/LibraryFilters'
 
 const InterviewTwo = () => {
-  const { library, loading, genres, filteredBooks, loadingLibrary, loadingGenres } = useLibrary(state => ({
+  const { library, loading, genres, filteredBooks, fetchLibrary } = useLibrary(state => ({
     library: state.library,
     loading: state.loading,
     genres: state.genres,
     filteredBooks: state.filteredBooks,
-    loadingLibrary: state.loadingLibrary,
-    loadingGenres: state.loadingGenres
+    fetchLibrary: state.fetchLibrary,
   }))
 
   useEffect(() => {
-    const init = async () => {
-      const [responseLibrary, responseGenres] = await Promise.all([loadingLibrary(), loadingGenres()])
-      console.log(responseLibrary, responseGenres)
-    }
-    init()
+    fetchLibrary()
   }, [])
 
   const hasFilteredBooks = useMemo(() => filteredBooks.library.length > 0 ? filteredBooks : library, [filteredBooks, library])
