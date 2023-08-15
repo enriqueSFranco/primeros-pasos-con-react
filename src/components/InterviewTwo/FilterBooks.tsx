@@ -20,7 +20,7 @@ const FilterBooks: React.FC<FilterBookProps> = ({ genres }) => {
     <ul className='library__filters-list'>
       <li>
         <BookFilter
-          genre='todos'
+          genre='Biblioteca'
           handleSelectedGenre={(e) => handleSelectedGenre(e, GENRES.TODOS)}
         >
           <IconBooks />

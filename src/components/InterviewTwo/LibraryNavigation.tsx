@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import styles from './LibraryNavigation.module.css'
 
 const LibraryNavigation = () => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/">Biblioteca</Link></li>
-        <li><Link to="/reading-list">Mi lista de lectura</Link></li>
+    <nav className={styles.nav}>
+      <ul className={styles.nav_list}>
+        <li><Link className={styles.nav_link} to="/reading-list">Lista de lectura</Link></li>
       </ul>
     </nav>
   )
