@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { useLibrary } from "@/stores/library.store"
 import { useNavigate } from "react-router-dom"
-import Library from "@/components/InterviewTwo/Library"
+import Book from "@/components/InterviewTwo/Book"
 
 const ReadingList: React.FC = () => {
   const navigate = useNavigate()
@@ -10,8 +10,6 @@ const ReadingList: React.FC = () => {
 
   const hasReadingList = useMemo(() => readingList.library.length > 0, [readingList])
 
-  console.log(readingList.library.length)
-
   return (
     <section className='wrapper_library'>
       <header>
@@ -19,7 +17,9 @@ const ReadingList: React.FC = () => {
       </header>
       <h2>lista de lectura</h2>
       {hasReadingList ? (
-        <Library data={readingList} loading={false} />
+        <ul className="reading-list">
+          {readingList.library.map(({ book }) => (<Book book={book} isInReadingList />))}
+        </ul>
       ) : (
         <div>No hay libros por leer</div>
       )}

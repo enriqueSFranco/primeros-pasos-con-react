@@ -10,12 +10,25 @@ const InterviewTwo = () => {
     loading: state.loading,
     genres: state.genres,
     filteredBooks: state.filteredBooks,
+    readingList: state.readingList,
     fetchLibrary: state.fetchLibrary,
   }))
 
   useEffect(() => {
     fetchLibrary()
   }, [])
+
+  // useEffect(() => {
+  //   const handleStorageChange = (e: StorageEvent) => {
+  //     if (e.key === 'library-storage') {
+  //       console.log('se ha modificado informacion del localstorage')
+  //     }
+  //   }
+
+  //   window.addEventListener('storage', handleStorageChange)
+
+  //   return () => window.removeEventListener('storage', handleStorageChange)
+  // }, [])
 
   const hasFilteredBooks = useMemo(() => filteredBooks.library.length > 0 ? filteredBooks : library, [filteredBooks, library])
 
