@@ -8,10 +8,11 @@ interface LibraryState {
   loading: boolean
   genres: Book['genre'][] | []
   filteredBooks: Library
-  loadingLibrary: () => void
+  readingList: Library,
+  fetchLibrary: () => void
   findBook: ({ title }: { title: Book['title'] }) => void
-  loadingGenres: () => void
   filterBy: ({ typeFilter }: { typeFilter: string }) => void
+  addToReadingList: (book: Book) => boolean
 }
 
 export const useLibrary = create<LibraryState>((set, get) => ({
@@ -19,35 +20,26 @@ export const useLibrary = create<LibraryState>((set, get) => ({
   genres: [],
   loading: true,
   filteredBooks: { library: [] },
+  readingList: { library: [] },
   findBook: async ({ title }: { title: Book['title'] }) => {
     const { library } = get()
     const booksMatched = await FilterBooks.findBooksByTitle({ title, library })
     set({ filteredBooks: { library: booksMatched } })
   },
-  loadingLibrary: async () => {
+  fetchLibrary: async () => {
     try {
-      const books: Library = await loadingBooks()
-      set(state => ({ ...state, library: books, loading: true }))
+      set(state => ({ ...state, loading: true }))
+
+      const library = await loadingBooks()
+      set(state => ({ ...state, library, loading: false }))
+
+      const genres: Book['genre'][] = await getAllGenres(library)
+      set(state => ({ ...state, genres }))
+
     } catch (error) {
-      throw new Error('')
+      throw new Error('Opps, ha ocurrido un error durante la peticion')
     } finally {
       set(state => ({ ...state, loading: false }))
-    }
-  },
-  loadingGenres: async () => {
-    const { library } = get()
-    const books = library.library
-    try {
-      if (library) {
-        const genres: Book['genre'][] = await getAllGenres({ library: books })
-        console.log(library)
-        set((state) => ({ ...state, genres }))
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(`Error: ${error.message}`)
-      }
-      return []
     }
   },
   filterBy: ({ typeFilter }: { typeFilter: string }) => {
@@ -59,5 +51,20 @@ export const useLibrary = create<LibraryState>((set, get) => ({
       // const filterInstance = new FilterBooks({ books: library })
       // filterInstance.filterBy(typeFilter)
     }
+  },
+  addToReadingList: (book: Book): boolean => {
+    const { readingList } = get()
+    // TODO: IMPLEMENTAR LA ACCIÓN DE AGREGAR LIRBO A LA LISTA DE LECTURA
+
+    const isBookAdded = readingList.library.some(({ book }) => book.title === book.title)
+
+    if (!isBookAdded) {
+      const readingListCopy: Library = {
+        library: [{ book }, ...readingList.library]
+      }
+      set(state => ({ ...state, readingList: readingListCopy }))
+      return true
+    }
+    return false
   }
 }))
