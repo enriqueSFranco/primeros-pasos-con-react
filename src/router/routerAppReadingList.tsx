@@ -1,6 +1,7 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import DetailsBook from '@/views/DetailsBook'
 import InterviewTwo from '@/views/InterviewTwo'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ReadingList from '@/views/ReadingList'
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: ':title',
     element: <DetailsBook />
+  },
+  {
+    path: '/reading-list',
+    element: <ReadingList />
   }
 ])
 
