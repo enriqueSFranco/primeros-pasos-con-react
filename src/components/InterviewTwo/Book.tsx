@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
 import { type Book } from '@/shared/types.d'
 import { IconSave } from '../Icon'
-import styles from './Book.module.css'
 import { useLibrary } from '@/stores/library.store'
+import styles from './Book.module.css'
 
 interface BookProps {
   book: Book
+  isInReadingList?: boolean
 }
 
-const Book: React.FC<BookProps> = ({ book }) => {
-  const { readingList, addToReadingList } = useLibrary(state => ({ readingList: state.readingList, addToReadingList: state.addToReadingList }))
+const Book: React.FC<BookProps> = ({ book, isInReadingList = false }) => {
+  const { readingList, addToReadingList, removeToReadingList } = useLibrary(state => ({
+    readingList: state.readingList,
+    addToReadingList: state.addToReadingList,
+    removeToReadingList: state.removeToReadingList
+  }))
 
   const handleAddToReadingList = (book: Book) => () => addToReadingList(book)
+  const handleRemoveToReadingList = (book: Book) => () => removeToReadingList(book)
 
   const isBookInReadingList = readingList.library.some(listBook => listBook.book.title === book.title)
 
@@ -24,7 +30,7 @@ const Book: React.FC<BookProps> = ({ book }) => {
       <div className={styles.book_cover}>
         <header className={styles.book_header}>
           <button
-            onClick={handleAddToReadingList(book)}
+            onClick={isInReadingList ? handleRemoveToReadingList(book) : handleAddToReadingList(book)}
             className={styles.book_btn_save}
           >
             <IconSave fill={fill} stroke={stroke} />
