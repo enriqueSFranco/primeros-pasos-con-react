@@ -4,7 +4,7 @@
   position: relative;
 }
 
-.book_filter__icon>input[type='radio'] {
+.book_filter__icon>input[type='checkbox'] {
   cursor: pointer;
   position: absolute;
   inset: 0;

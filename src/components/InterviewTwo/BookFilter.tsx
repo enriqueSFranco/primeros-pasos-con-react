@@ -14,7 +14,7 @@ const BookFilter: React.FC<BookFilterProps> = ({ children, genre, handleSelected
         {children}
         <input type="checkbox" name={genre} id={genre} value={genre} onChange={(e) => handleSelectedGenre(e, genre)} />
       </div>
-      <figcaption className={styles.book_filter__text}><span>{genre}</span></figcaption>
+      <figcaption className={styles.book_filter__text}><span style={{ fontSize: '14px' }}>{genre}</span></figcaption>
     </figure>
   )
 }

@@ -1,16 +1,17 @@
-export function IconSave () {
+export function IconSave ({ fill = "none", stroke = "#fff" }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       width='36'
       height='36'
-      fill="#09f"
+      fill={fill}
       viewBox='0 0 24 24'
     >
       <path
-        fillRule='evenodd'
-        d='M6.75 6l.75-.75h9l.75.75v13.316L12 16.206l-5.25 3.11V6zm1.5.75v9.934L12 14.46l3.75 2.223V6.75h-7.5z'
-        clipRule='evenodd'
+        stroke={stroke}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        d='M15.75 5h-7.5C7.56 5 7 5.588 7 6.313V19l5-3.5 5 3.5V6.312C17 5.588 16.44 5 15.75 5z'
       ></path>
     </svg>
   )

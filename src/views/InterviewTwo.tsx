@@ -1,46 +1,46 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo } from 'react'
 import { useLibrary } from '@/stores/library.store'
 import HeaderLibrary from '@/components/InterviewTwo/HeaderLibrary'
 import Library from '@/components/InterviewTwo/Library'
-import Form from '@/components/InterviewTwo/Form'
-import FilterBooks from '@/components/InterviewTwo/FilterBooks'
+import LibraryFilters from '@/components/InterviewTwo/LibraryFilters'
 
 const InterviewTwo = () => {
-  const { library, loading, genres, filteredBooks, loadingLibrary, loadingGenres } = useLibrary(state => ({
+  const { library, loading, genres, filteredBooks, fetchLibrary } = useLibrary(state => ({
     library: state.library,
     loading: state.loading,
     genres: state.genres,
     filteredBooks: state.filteredBooks,
-    loadingLibrary: state.loadingLibrary,
-    loadingGenres: state.loadingGenres
+    readingList: state.readingList,
+    fetchLibrary: state.fetchLibrary,
   }))
 
   useEffect(() => {
-    loadingLibrary()
+    fetchLibrary()
   }, [])
 
-  const hasFilteredBooks = filteredBooks.library.length > 0 ? filteredBooks : library
+  // useEffect(() => {
+  //   const handleStorageChange = (e: StorageEvent) => {
+  //     if (e.key === 'library-storage') {
+  //       console.log('se ha modificado informacion del localstorage')
+  //     }
+  //   }
+
+  //   window.addEventListener('storage', handleStorageChange)
+
+  //   return () => window.removeEventListener('storage', handleStorageChange)
+  // }, [])
+
+  const hasFilteredBooks = useMemo(() => filteredBooks.library.length > 0 ? filteredBooks : library, [filteredBooks, library])
 
   return (
     <section className='interview_tow'>
-      <HeaderLibrary />
+      <HeaderLibrary>
+        <h2>📕books</h2>
+      </HeaderLibrary>
       <main className='wrapper_library'>
-        <header>
-          <aside className='wrapper_library__filters'>
-            <Form />
-            <FilterBooks genres={genres} />
-            <div>
-              {/* TODO: IMPLEMENT SEPARATOR */}
-            </div>
-            <nav>
-              <ul>
-                <li><Link to="/">Biblioteca</Link></li>
-                <li><Link to="/reading-list">Mi lista de lectura</Link></li>
-              </ul>
-            </nav>
-          </aside>
-        </header>
+        <HeaderLibrary>
+          <LibraryFilters genres={genres} />
+        </HeaderLibrary>
         <Library data={hasFilteredBooks} loading={loading} />
       </main>
     </section>

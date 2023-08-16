@@ -1,24 +1,32 @@
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import { useLibrary } from '@/stores/library.store'
 import { type Book } from '@/shared/types.d'
 import { IconSearch } from '../Icon'
 import styles from './Form.module.css'
 
 const Form = () => {
+  const queryRef = useRef<HTMLInputElement | null>(null)
   const queryHintId = useId()
   const { findBook } = useLibrary(state => ({ findBook: state.findBook }))
 
+  function resetForm () {
+    if (queryRef.current) {
+      queryRef.current.value = ''
+    }
+  }
+
   function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
+
     const $form = e.target as HTMLFormElement
     const field = new FormData($form)
 
     const query = field.get('query') as Book['title']
 
-    if (query !== '') {
+    if (query.trim() !== '') {
       findBook({ title: query })
+      resetForm()
     }
-    return
   }
 
   return (
@@ -27,6 +35,7 @@ const Form = () => {
         <div className={styles.wrapper_form__input}>
           <IconSearch />
           <input
+            ref={queryRef}
             type='search'
             name='query'
             id={queryHintId}
