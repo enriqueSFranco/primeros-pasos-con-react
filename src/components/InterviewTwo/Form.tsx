@@ -7,7 +7,7 @@ import styles from './Form.module.css'
 const Form = () => {
   const queryRef = useRef<HTMLInputElement | null>(null)
   const queryHintId = useId()
-  const { filterBy } = useLibrary(state => ({ filterBy: state.filterBy }))
+  const { filterByTitle } = useLibrary(state => ({ filterByTitle: state.filterByTitle }))
 
   function resetForm () {
     if (queryRef.current) {
@@ -24,7 +24,7 @@ const Form = () => {
     const query = field.get('query') as Book['title']
 
     if (query.trim() !== '') {
-      filterBy({ title: query })
+      filterByTitle({ title: query })
       resetForm()
     }
   }
