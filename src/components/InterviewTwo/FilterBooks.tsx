@@ -1,42 +1,26 @@
 import { useLibrary } from '@/stores/library.store'
-import { type Book, GENRES } from '@/shared/types.d'
-import BookFilter from './BookFilter'
-import { IconBook, IconBooks } from '../Icon'
+import { type Book } from '@/shared/types.d'
 
 interface FilterBookProps {
   genres: Book['genre'][] | []
 }
 
 const FilterBooks: React.FC<FilterBookProps> = ({ genres }) => {
-  const { filterBy } = useLibrary(state => ({ filterBy: state.filterBy }))
-
-  function handleSelectedGenre (e: React.ChangeEvent<HTMLInputElement>, genre: string): void {
-    const { checked } = e.target
-
-    filterBy({ typeFilter: genre })
-  }
 
   return (
-    <ul className='library__filters-list'>
-      <li>
-        <BookFilter
-          genre='Biblioteca'
-          handleSelectedGenre={(e) => handleSelectedGenre(e, GENRES.TODOS)}
-        >
-          <IconBooks />
-        </BookFilter>
-      </li>
-      {genres.map(genre => (
-        <li key={`genre-${genre}`}>
-          <BookFilter
-            genre={genre}
-            handleSelectedGenre={handleSelectedGenre}
-          >
-            <IconBook />
-          </BookFilter>
-        </li>
-      ))}
-    </ul>
+    <section>
+      <select name="" id="">
+        <option value='all'>Todos</option>
+        {genres.map(genre => (
+          <option value={genre}>{genre}</option>
+        ))}
+      </select>
+      <form action="">
+        <input
+          type="range"
+        />
+      </form>
+    </section>
   )
 }
 

@@ -24,10 +24,10 @@ const Book: React.FC<BookProps> = ({ book, isInReadingList = false }) => {
   const fill = isBookInReadingList ? '#FFD42D' : 'none'
   const stroke = isBookInReadingList ? 'none' : '#fff'
 
-
   return (
     <figure className={styles.wrapper_book}>
       <div className={styles.book_cover}>
+        {isBookInReadingList ? <div className={styles.is_in_reading_list}></div> : null}
         <header className={styles.book_header}>
           <button
             onClick={isInReadingList ? handleRemoveToReadingList(book) : handleAddToReadingList(book)}
