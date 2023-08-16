@@ -1,17 +1,12 @@
-import { Book } from "@/shared/types"
 import FilterBooks from "./FilterBooks"
 import Form from "./Form"
 import LibraryNavigation from "./LibraryNavigation"
 
-interface LibraryFiltersProps {
-  genres: Book['genre'][]
-}
-
-const LibraryFilters: React.FC<LibraryFiltersProps> = ({ genres }) => {
+const LibraryFilters: React.FC = () => {
   return (
     <section className='wrapper_library__filters'>
       <Form />
-      <FilterBooks genres={genres} />
+      <FilterBooks />
       <LibraryNavigation />
     </section>
   )

@@ -3,19 +3,21 @@ import { useLibrary } from '@/stores/library.store'
 import HeaderLibrary from '@/components/InterviewTwo/HeaderLibrary'
 import Library from '@/components/InterviewTwo/Library'
 import LibraryFilters from '@/components/InterviewTwo/LibraryFilters'
+import { BookLoader } from '@/services/library'
+
+const bookLoader = new BookLoader
 
 const InterviewTwo = () => {
-  const { library, loading, genres, filteredBooks, fetchLibrary } = useLibrary(state => ({
+  const { library, loading, filteredBooks, fetchLibrary } = useLibrary(state => ({
     library: state.library,
     loading: state.loading,
-    genres: state.genres,
     filteredBooks: state.filteredBooks,
     readingList: state.readingList,
     fetchLibrary: state.fetchLibrary,
   }))
 
   useEffect(() => {
-    fetchLibrary()
+    fetchLibrary(bookLoader)
   }, [])
 
   // useEffect(() => {
@@ -39,7 +41,7 @@ const InterviewTwo = () => {
       </HeaderLibrary>
       <main className='wrapper_library'>
         <HeaderLibrary>
-          <LibraryFilters genres={genres} />
+          <LibraryFilters />
         </HeaderLibrary>
         <Library data={hasFilteredBooks} loading={loading} />
       </main>

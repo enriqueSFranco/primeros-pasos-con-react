@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { GENRES, type Book, type Library } from '@/shared/types.d'
-import { getAllGenres, loadingBooks } from '@/services'
+import type { Book, Library } from '@/shared/types.d'
+import { BookLoadService } from '@/shared/interfaces.d'
+import { getAllGenres } from '@/services'
 import { FilterBooks } from '@/utilities'
 
 interface LibraryState {
@@ -10,9 +11,9 @@ interface LibraryState {
   genres: Book['genre'][] | []
   filteredBooks: Library
   readingList: Library,
-  fetchLibrary: () => void
-  findBook: ({ title }: { title: Book['title'] }) => void
-  filterBy: ({ typeFilter }: { typeFilter: string }) => void
+  fetchLibrary: (bookLoader: BookLoadService) => void
+  filterByTitle: ({ title }: { title: Book['title'] }) => void
+  filterByGenre: (genre: string) => void
   addToReadingList: (book: Book) => void
   removeToReadingList: (book: Book) => void
 }
@@ -25,16 +26,22 @@ export const useLibrary = create<LibraryState>()(
       loading: true,
       filteredBooks: { library: [] },
       readingList: { library: [] },
-      findBook: async ({ title }: { title: Book['title'] }) => {
+      filterByTitle: async ({ title }: { title: Book['title'] }) => {
         const { library } = get()
         const booksMatched = await FilterBooks.findBooksByTitle({ title, library })
         set({ filteredBooks: { library: booksMatched } })
+
       },
-      fetchLibrary: async () => {
+      filterByGenre: (genre: string) => {
+        const { library } = get()
+        const newFilterdBook = library.library.filter(({ book }) => book.genre === genre)
+        set(state => ({ ...state, filteredBooks: { library: newFilterdBook } }))
+      },
+      fetchLibrary: async (bookLoader: BookLoadService) => {
         try {
           set(state => ({ ...state, loading: true }))
 
-          const library = await loadingBooks()
+          const library = await bookLoader.loadingBooks()
           set(state => ({ ...state, library, loading: false }))
 
           const genres: Book['genre'][] = await getAllGenres(library)
@@ -44,16 +51,6 @@ export const useLibrary = create<LibraryState>()(
           throw new Error('Opps, ha ocurrido un error durante la peticion')
         } finally {
           set(state => ({ ...state, loading: false }))
-        }
-      },
-      filterBy: ({ typeFilter }: { typeFilter: string }) => {
-        const { library } = get()
-        if (library) {
-          if (typeFilter === GENRES.TODOS) {
-            set(state => ({ ...state, filteredBooks: library }))
-          }
-          // const filterInstance = new FilterBooks({ books: library })
-          // filterInstance.filterBy(typeFilter)
         }
       },
       addToReadingList: (book: Book) => {
@@ -69,11 +66,13 @@ export const useLibrary = create<LibraryState>()(
         }
       },
       removeToReadingList: (book: Book) => {
-        console.log('remover ', book)
-        const { readingList } = get()
+        set((state) => {
+          const { readingList } = state
+          const { library } = readingList
 
-        const newReadingList = readingList.library.filter(bookList => bookList.book.title !== book.title)
-        set(({ readingList: { library: newReadingList } }))
+          const updatedReadingList = library.filter(bookList => bookList.book.title !== book.title)
+          return { readingList: { library: updatedReadingList } }
+        })
       }
     }),
     {

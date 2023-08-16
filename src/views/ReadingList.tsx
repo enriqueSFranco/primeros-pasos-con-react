@@ -15,7 +15,7 @@ const ReadingList: React.FC = () => {
       <header>
         <button onClick={handleNavigate}>Regresar</button>
       </header>
-      <h2>lista de lectura</h2>
+      <h2>lista de lectura ({readingList.library.length})</h2>
       {hasReadingList ? (
         <ul className="reading-list">
           {readingList.library.map(({ book }) => (<Book book={book} isInReadingList />))}

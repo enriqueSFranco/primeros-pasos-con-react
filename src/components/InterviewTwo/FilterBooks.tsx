@@ -1,42 +1,41 @@
+import { useId, useState } from 'react'
 import { useLibrary } from '@/stores/library.store'
-import { type Book, GENRES } from '@/shared/types.d'
-import BookFilter from './BookFilter'
-import { IconBook, IconBooks } from '../Icon'
+import styles from './FilterBooks.module.css'
 
-interface FilterBookProps {
-  genres: Book['genre'][] | []
-}
+const FilterBooks: React.FC = () => {
+  const genreSelectedId = useId()
+  const [genre, updateGenre] = useState<string>('all')
+  const { genres, filterByGenre } = useLibrary(state => ({ genres: state.genres, filterByGenre: state.filterByGenre }))
 
-const FilterBooks: React.FC<FilterBookProps> = ({ genres }) => {
-  const { filterBy } = useLibrary(state => ({ filterBy: state.filterBy }))
-
-  function handleSelectedGenre (e: React.ChangeEvent<HTMLInputElement>, genre: string): void {
-    const { checked } = e.target
-
-    filterBy({ typeFilter: genre })
+  function handleChangeSelectedGenre (e: React.ChangeEvent<HTMLSelectElement>) {
+    const { value } = e.target
+    updateGenre(value)
+    filterByGenre(value)
   }
 
   return (
-    <ul className='library__filters-list'>
-      <li>
-        <BookFilter
-          genre='Biblioteca'
-          handleSelectedGenre={(e) => handleSelectedGenre(e, GENRES.TODOS)}
+    <section className={styles.wrapper_filters}>
+      <label className={styles.wraper_filter__select}>
+        <span>Genero:</span>
+        <select
+          name="genres"
+          id={genreSelectedId}
+          value={genre}
+          onChange={handleChangeSelectedGenre}
+          className={styles.select}
         >
-          <IconBooks />
-        </BookFilter>
-      </li>
-      {genres.map(genre => (
-        <li key={`genre-${genre}`}>
-          <BookFilter
-            genre={genre}
-            handleSelectedGenre={handleSelectedGenre}
-          >
-            <IconBook />
-          </BookFilter>
-        </li>
-      ))}
-    </ul>
+          <option value='all'>Todos</option>
+          {genres.map(genre => (
+            <option key={`genre-${genre}`} value={genre}>{genre}</option>
+          ))}
+        </select>
+      </label>
+      <form action="">
+        <input
+          type="range"
+        />
+      </form>
+    </section>
   )
 }
 
