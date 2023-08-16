@@ -12,7 +12,8 @@ interface LibraryState {
   filteredBooks: Library
   readingList: Library,
   fetchLibrary: (bookLoader: BookLoadService) => void
-  filterBy: ({ title }: { title: Book['title'] }) => void
+  filterByTitle: ({ title }: { title: Book['title'] }) => void
+  filterByGenre: (genre: string) => void
   addToReadingList: (book: Book) => void
   removeToReadingList: (book: Book) => void
 }
@@ -25,14 +26,16 @@ export const useLibrary = create<LibraryState>()(
       loading: true,
       filteredBooks: { library: [] },
       readingList: { library: [] },
-      filterBy: async ({ title }: { title: Book['title'] }) => {
+      filterByTitle: async ({ title }: { title: Book['title'] }) => {
         const { library } = get()
-        const titleIsEmpty = title.trim().length
+        const booksMatched = await FilterBooks.findBooksByTitle({ title, library })
+        set({ filteredBooks: { library: booksMatched } })
 
-        if (!titleIsEmpty) { // busqueda por el titulo de libro
-          const booksMatched = await FilterBooks.findBooksByTitle({ title, library })
-          set({ filteredBooks: { library: booksMatched } })
-        }
+      },
+      filterByGenre: (genre: string) => {
+        const { library } = get()
+        const newFilterdBook = library.library.filter(({ book }) => book.genre === genre)
+        set(state => ({ ...state, filteredBooks: { library: newFilterdBook } }))
       },
       fetchLibrary: async (bookLoader: BookLoadService) => {
         try {
