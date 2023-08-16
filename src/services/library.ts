@@ -1,3 +1,4 @@
+import { BookLoadService } from "@/shared/interfaces.d"
 import type { Book, Library } from "@/shared/types.d"
 import { CustomError } from "@/utilities"
 
@@ -11,7 +12,6 @@ function extractGenresFromLibrary (library: Library): Book["genre"][] {
 }
 
 export async function getAllGenres (library: Library): Promise<Book["genre"][]> {
-  console.log(library)
   try {
     const uniqueGenres = extractGenresFromLibrary(library)
     // TODO: Mapear data
@@ -24,20 +24,22 @@ export async function getAllGenres (library: Library): Promise<Book["genre"][]> 
     throw new Error("An unexpected error occurred while loading the library.")
   }
 }
+export class BookLoader implements BookLoadService {
 
-export async function loadingBooks (): Promise<Library> {
-  try {
-    const response = await fetch('api/books.json', { headers: { 'Content-Type': 'application/json' } })
-    if (!response.ok) {
-      throw new CustomError({ statusCode: response.status, statusText: response.statusText })
-    }
-    const data: Library = await response.json()
+  async loadingBooks (): Promise<Library> {
+    try {
+      const response = await fetch('api/books.json', { headers: { 'Content-Type': 'application/json' } })
+      if (!response.ok) {
+        throw new CustomError({ statusCode: response.status, statusText: response.statusText })
+      }
+      const data: Library = await response.json()
 
-    return data
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`Error: ${error.message}`)
+      return data
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(`Error: ${error.message}`)
+      }
+      throw new Error("An unexpected error occurred while loading the library.")
     }
-    throw new Error("An unexpected error occurred while loading the library.")
   }
-}
+} 
