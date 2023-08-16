@@ -1,12 +1,16 @@
-import Book from "./Book"
+import { type Book as BookType } from "@/shared/types.d"
 
 interface BookDetailsProps {
-  title: Book['title']
+  book: BookType
 }
 
-const BookDetails: React.FC<BookDetailsProps> = ({ title }) => {
+const BookDetails: React.FC<BookDetailsProps> = ({ book }) => {
   return (
-    <div>{title}</div>
+    <article>
+      <figure>
+        <img src={book.cover} alt={book.title} />
+      </figure>
+    </article>
   )
 }
 

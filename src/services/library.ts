@@ -24,6 +24,11 @@ export async function getAllGenres (library: Library): Promise<Book["genre"][]> 
     throw new Error("An unexpected error occurred while loading the library.")
   }
 }
+
+export function getBook ({ library, title }: { library: Library, title: Book['title'] }): Book | undefined {
+  return library.library.find(({ book }) => book.title === title)?.book
+}
+
 export class BookLoader implements BookLoadService {
 
   async loadingBooks (): Promise<Library> {
