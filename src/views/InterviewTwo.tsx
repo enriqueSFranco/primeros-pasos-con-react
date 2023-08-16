@@ -3,6 +3,9 @@ import { useLibrary } from '@/stores/library.store'
 import HeaderLibrary from '@/components/InterviewTwo/HeaderLibrary'
 import Library from '@/components/InterviewTwo/Library'
 import LibraryFilters from '@/components/InterviewTwo/LibraryFilters'
+import { BookLoader } from '@/services/library'
+
+const bookLoader = new BookLoader
 
 const InterviewTwo = () => {
   const { library, loading, genres, filteredBooks, fetchLibrary } = useLibrary(state => ({
@@ -15,7 +18,7 @@ const InterviewTwo = () => {
   }))
 
   useEffect(() => {
-    fetchLibrary()
+    fetchLibrary(bookLoader)
   }, [])
 
   // useEffect(() => {
