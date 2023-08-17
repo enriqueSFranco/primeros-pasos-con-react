@@ -38,7 +38,7 @@ const Book: React.FC<BookProps> = ({ book, isInReadingList = false }) => {
         </header>
         <img src={book.cover} alt={`book-${book.title}`} loading='lazy' />
       </div>
-      <Link to={`${book.title}`}>
+      <Link to={book.title}>
         <figcaption className={styles.book_details}>
           <h2>{book.title}</h2>
           <h3>{book.author['name']}</h3>
