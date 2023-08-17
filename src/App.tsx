@@ -6,6 +6,7 @@ import User from './components/User'
 import Game from './views/Game'
 import RenderConditional from './RenderConditional'
 import AppReadingLinst from './router/routerAppReadingList'
+import InterviewThree from './views/InterviewThree'
 
 const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
@@ -31,6 +32,9 @@ function App () {
       {/* <InterviewOne /> */}
 
       <AppReadingLinst />
+
+      {/* INTERVIEW THREE */}
+      <InterviewThree />
     </div>
   )
 }
