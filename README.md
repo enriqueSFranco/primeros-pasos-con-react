@@ -36,18 +36,18 @@ APIs:
 - [✅] Agregar un select para ordenar los resultados alfabéticamente o por precio.
 
 ## Extra
-- [ ] La query y la preferencia de orden deberían persistirse al recargar la página.
+- [✅] La query y la preferencia de orden deberían persistirse al recargar la página.
 
 ## Tercera etapa
 
 ## Nivel 1
-- [ ] Los recomendados deberían ser aleatorios no deberían cambiar cuando cambia la query.
+- [✅] Los recomendados deberían ser aleatorios no deberían cambiar cuando cambia la query.
 
 ## Nivel 2
-- [ ] El search está desfazado y además se llama muy frecuentemente.
+- [✅] El search está desfazado y además se llama muy frecuentemente.
 
 ## Nivel 3
-- [ ] Debemos poder agregar y quitar productos a favoritos clickeandolos, los productos en favoritos deben tener la clase "fav".
+- [✅] Debemos poder agregar y quitar productos a favoritos clickeandolos, los productos en favoritos deben tener la clase "fav".
 
 ## Extra
-- [ ] Los favoritos deben persistirse cuando recargamos la página.
+- [✅] Los favoritos deben persistirse cuando recargamos la página.
