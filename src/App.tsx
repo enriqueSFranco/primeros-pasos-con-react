@@ -9,7 +9,7 @@ import AppReadingLinst from './router/routerAppReadingList'
 import InterviewThree from './views/InterviewThree'
 import InterviewFour from './views/InterviewFour'
 import InterviewFive from './views/InterviewFive'
-import Polymorphic from './polymorphicComponent/Polymorphic'
+import Polymorphic from './Patterns/Polymorphic'
 
 const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
