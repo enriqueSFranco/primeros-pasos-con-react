@@ -8,6 +8,8 @@ import RenderConditional from './RenderConditional'
 import AppReadingLinst from './router/routerAppReadingList'
 import InterviewThree from './views/InterviewThree'
 import InterviewFour from './views/InterviewFour'
+import InterviewFive from './views/InterviewFive'
+import Polymorphic from './polymorphicComponent/Polymorphic'
 
 const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
@@ -39,6 +41,14 @@ function App () {
 
       {/* INTERVIEW FOUR */}
       <InterviewFour />
+
+      {/* INTERVIEW FIVE */}
+      <InterviewFive />
+
+      {/* PATTER POLIMORPHIC COMPONENT */}
+      <Polymorphic as={'h2'}>
+        Hello World 🌎
+      </Polymorphic>
     </div>
   )
 }

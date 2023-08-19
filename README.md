@@ -100,10 +100,10 @@ APIs:
 # Ejercicios de entrevista 5 parte 1
 
 ## Nivel 1
-- [ ] Debería ejecutar la función `handleKeyDown` cada vez que toco una tecla del teclado.
+- [✅] Debería ejecutar la función `handleKeyDown` cada vez que toco una tecla del teclado.
 
 ## Nivel 2
-- [ ] Debería agregar la clase `correct` si la letra está en la posición correcta en relación con la respuesta.
+- [✅] Debería agregar la clase `correct` si la letra está en la posición correcta en relación con la respuesta.
 
 ## Nivel 3
 - [ ] Solo deberia poder pasar a la siguiente palabra si escribí 5 letras.

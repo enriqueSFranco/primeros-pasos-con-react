@@ -51,12 +51,18 @@ function InterviewFive () {
     [turn, words, answer],
   );
 
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
+
   return (
     <main className="board">
       {words.map((word, wordIndex) => (
         <section className="word">
           {word.map((letter, letterIndex) => {
-            const isCorrect = false;
+            const isCorrect = letter && wordIndex < turn && letter === answer[letterIndex] &&
+              answer.includes(letter);
             const isPresent =
               letter &&
               wordIndex < turn &&
