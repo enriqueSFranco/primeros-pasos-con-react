@@ -10,6 +10,7 @@ import InterviewThree from './views/InterviewThree'
 import InterviewFour from './views/InterviewFour'
 import InterviewFive from './views/InterviewFive'
 import Polymorphic from './Patterns/Polymorphic'
+import InterviewSix from './views/InterviewSix'
 
 const user: UserType = { name: 'enrique', age: 24, username: 'kike', email: 'enrique@gmail.com' }
 
@@ -44,6 +45,9 @@ function App () {
 
       {/* INTERVIEW FIVE */}
       <InterviewFive />
+
+      {/* INTERVIEW SIX */}
+      <InterviewSix />
 
       {/* PATTER POLIMORPHIC COMPONENT */}
       <Polymorphic as={'h2'}>
