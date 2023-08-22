@@ -160,3 +160,18 @@ APIs:
 - [✅] Mostrar un texto de "Cargando..." hasta que obtengamos los datos
 - [✅] Deberíamos mostrar la cantidad de elementos en el carrito en el botón flotante
 - [✅] No deberíamos poder agregar más de 3 elementos al carrito
+
+# Ejercicios de entrevista 6 parte 2
+
+- [✅] Deberíamos ver el total a pagar en el botón flotante
+- [✅] Nuestro carrito no debería poder exceder los $10
+- [✅] Implementar un buscador por nombre
+- [✅] Deberíamos poder agregar y quitar elementos de favoritos
+- [✅] Los favoritos deberían persistirse al recargar la página
+
+# Ejercicios de entrevista 6 parte final
+
+- [ ] Cuando agregamos un elemento a nuestro carrito, todas las cards se vuelven a renderizar
+- [ ] Cuando tengamos un elemento en el carrito, debemos reemplazar el botón de agregar por un campo que nos indique la cantidad en el carrito y dos botones, uno de incrementar y otro de decrementar, ambos botones deben funcionar
+- [ ] El carrito debería persistirse al recargar la página
+- [ ] Implementar el carrito sin arrays
