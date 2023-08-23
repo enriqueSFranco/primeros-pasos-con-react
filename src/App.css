@@ -172,14 +172,41 @@ ul {
 }
 
 /* INTERVIEW SIX */
-.interview_six,
-.fav-list {
+.container-pokemons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1fr, 200px);
+  grid-template-areas: "grid-left grid-right";
+  gap: 16px;
+}
+
+.pokemon-list {
+  grid-area: grid-left;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 16px;
 }
 
+.fav-list {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.grid-right {
+  grid-area: grid-right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .pokemon-card {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
