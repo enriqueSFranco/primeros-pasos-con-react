@@ -332,3 +332,23 @@ ul {
   align-items: center;
   justify-content: center;
 }
+
+
+/* INTERVIEW SEVEN */
+.btn-file {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.wrapper-file {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
