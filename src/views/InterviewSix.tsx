@@ -4,31 +4,21 @@ import { Pokemon } from '@/shared/interfaces'
 import { IconCart, IconHeart } from '@/components/Icon'
 import { usePokemon } from '@/hooks/usePokemons'
 
-// HELPER
-function calculateTotalToPay (cart: Pokemon[]) {
-  let total = 0
-  cart.forEach(item => {
-    const { price } = item
-    total += price
-  })
-  return total
-}
-
 // POKEMON CONTAINER
 interface PokemonContainerProps {
   pokemon: Pokemon
 }
 const PokemonContainer: React.FC<PokemonContainerProps> = ({ pokemon }) => {
+  const cart = usePokemonStorage(state => state.addToCart)
+
   const {
     favorites,
     addToFavs,
     removeToFavs,
-    addToCart
   } = usePokemonStorage(state => ({
     favorites: state.favorites,
     addToFavs: state.addToFavs,
     removeToFavs: state.removeToFavs,
-    addToCart: state.addToCart
   }))
 
   // const totalToPay = useMemo(() => cart ? calculateTotalToPay(cart) : 0, [cart])
@@ -47,7 +37,7 @@ const PokemonContainer: React.FC<PokemonContainerProps> = ({ pokemon }) => {
       pokemon={pokemon}
       isFavPokemon={isFav}
       handleFavClick={handleFavClick}
-      handleAddToCartClick={addToCart}
+      handleAddToCartClick={cart}
     />
   )
 }
@@ -59,7 +49,6 @@ interface PokemonProps {
   handleAddToCartClick: (pokemon: Pokemon) => void
 }
 const Pokemon: React.FC<PokemonProps> = ({ pokemon, isFavPokemon, handleFavClick, handleAddToCartClick }) => {
-
   return (
     <figure className='pokemon-card'>
       <img
@@ -76,6 +65,7 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemon, isFavPokemon, handleFavClick
         <footer className='pokemon-actions'>
           <button onClick={() => handleAddToCartClick(pokemon)} className='add-to-cart-button'>
             <IconCart />
+            <span>{ }</span>
           </button>
           <button className='favorite-button' onClick={handleFavClick}>
             <IconHeart fill={isFavPokemon ? '#ff0000' : '#fff'} />
@@ -97,26 +87,20 @@ function InterviewSix () {
 
   const totalPokemons = useMemo(() => cart.length, [cart])
 
-  const totalToPay = useMemo(() => calculateTotalToPay(cart), [cart])
-
   const matchedPokemons = useMemo(() => {
     if (pokemons === null) return []
-
     return query.trim() ?
-      pokemons.filter(pokemon => {
-        pokemon.name.toLowerCase().includes(query.toLowerCase())
+      pokemons?.filter(pokemon => {
+        return pokemon.name.toLowerCase().includes(query.toLowerCase())
       }) : pokemons
   }, [pokemons, query])
-
-  if (loading) {
-    return <p>Cargando...</p>
-  }
 
   function handleChange (e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault()
     const { value } = e.target
     updatedQuery(value)
   }
+
   return (
     <>
       <div className='wrapper_form__pokemon'>
@@ -134,30 +118,33 @@ function InterviewSix () {
           </div>
         </form>
       </div>
-      <section className='interview_six'>
-        {matchedPokemons.map((pokemon) => (
-          <PokemonContainer
-            key={`pokemon-${pokemon.id}`}
-            pokemon={pokemon}
-          />
-        ))}
-      </section>
-      <section className='wrapper-favs'>
-        <h2 style={{ textAlign: 'center' }}>Equipo pokemon</h2>
-        <ul className='fav-list'>
-          {hasFavs ? favorites.map((pokemon) => (
-            <li key={`pokemon-fav-${pokemon.id}`}>
-              <PokemonContainer
-                key={`pokemon-${pokemon.name}`}
-                pokemon={pokemon}
-              />
-            </li>
-          )) : <p>Aun no tienes ningun pokemon en tu equipo</p>}
-        </ul>
-      </section>
+      <div className='container-pokemons'>
+        <section className='grid-left'>
+          {loading ? (<p>cargando...</p>) : (
+            <ul className='pokemon-list'>
+              {matchedPokemons.map((pokemon) => (
+                <li key={`pokemon-${pokemon.id}`}>
+                  <PokemonContainer pokemon={pokemon} />
+                </li>
+              ))}
+            </ul>
+          )}
+
+        </section>
+        <section className='grid-right'>
+          <h2 style={{ textAlign: 'center' }}>Equipo pokemon</h2>
+          <ul className='fav-list'>
+            {hasFavs ? favorites.map((pokemon) => (
+              <li key={`pokemon-fav-${pokemon.id}`}>
+                <PokemonContainer pokemon={pokemon} />
+              </li>
+            )) : <p>Aun no tienes ningun pokemon en tu equipo</p>}
+          </ul>
+        </section>
+      </div>
 
       <footer className='footer_pokemon'>
-        <button className='nes-btn is-primary'>{totalPokemons} items (total ${totalToPay})</button>
+        <button className='nes-btn is-primary'>{totalPokemons} items (total)</button>
       </footer>
     </>
   )
