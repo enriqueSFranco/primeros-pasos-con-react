@@ -62,7 +62,6 @@ export const useLibrary = create<LibraryState>()(
             library: [...readingList.library, { book }]
           }
           set(({ readingList: newReadingList }))
-          console.log(newReadingList)
         }
       },
       removeToReadingList: (book: Book) => {

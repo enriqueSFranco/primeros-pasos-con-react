@@ -33,7 +33,7 @@ const api = {
             {
               id: "25",
               name: "Pikachu",
-              price: 5,
+              price: 7,
               description:
                 "Pikachu almacena una gran cantidad de electricidad en sus mejillas. Estas parecen cargarse eléctricamente durante la noche mientras duerme.",
               image: new URL(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png`),
