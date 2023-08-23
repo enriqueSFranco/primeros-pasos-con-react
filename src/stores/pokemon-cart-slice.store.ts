@@ -1,11 +1,6 @@
 import { StateCreator } from "zustand"
 import { Pokemon } from "@/shared/interfaces"
 
-const CONFIG = {
-  MAX_STORE: 3,
-  MAX_MONEY: 10
-}
-
 type CartItem = {
   item: Pokemon
   quantity: number
@@ -18,6 +13,7 @@ type State = {
 
 type Action = {
   addToCart: (pokemon: Pokemon) => void
+  deleteItemToCart: (pokemonId: Pokemon['id']) => void
 }
 
 type StateWithActions = State & Action
@@ -26,8 +22,7 @@ export const createPokemonCartSlice: StateCreator<StateWithActions> = (set, get)
   cart: {},
   totalToPay: 0,
   addToCart: (pokemon: Pokemon) => {
-    const { cart, totalToPay } = get()
-    if (totalToPay + pokemon.price > CONFIG.MAX_MONEY) return
+    const { cart } = get()
 
     set(() => {
       if (cart[pokemon.id]) {
@@ -52,5 +47,17 @@ export const createPokemonCartSlice: StateCreator<StateWithActions> = (set, get)
         }
       }
     })
+  },
+  deleteItemToCart: (pokemonId: Pokemon['id']) => {
+    const { cart } = get()
+    const updatedCart = { ...cart }
+
+    if (updatedCart[pokemonId].quantity > 0) {
+      updatedCart[pokemonId] = {
+        item: updatedCart[pokemonId].item,
+        quantity: updatedCart[pokemonId].quantity - 1
+      }
+    }
+    set(({ cart: updatedCart }))
   }
 })

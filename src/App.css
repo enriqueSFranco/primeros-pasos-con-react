@@ -205,6 +205,12 @@ ul {
   justify-content: flex-start;
 }
 
+.cart-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .pokemon-card {
   height: 100%;
   display: flex;

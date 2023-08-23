@@ -9,7 +9,7 @@ interface PokemonContainerProps {
   pokemon: Pokemon
 }
 const PokemonContainer: React.FC<PokemonContainerProps> = ({ pokemon }) => {
-  const cart = usePokemonStorage(state => state.addToCart)
+  const cart = usePokemonStorage()
 
   const {
     favorites,
@@ -36,8 +36,9 @@ const PokemonContainer: React.FC<PokemonContainerProps> = ({ pokemon }) => {
     <Pokemon
       pokemon={pokemon}
       isFavPokemon={isFav}
-      handleFavClick={handleFavClick}
-      handleAddToCartClick={cart}
+      handleFav={handleFavClick}
+      handleAddToCart={cart.addToCart}
+      handleDeleteItemInCart={cart.deleteItemToCart}
     />
   )
 }
@@ -45,10 +46,18 @@ const PokemonContainer: React.FC<PokemonContainerProps> = ({ pokemon }) => {
 interface PokemonProps {
   pokemon: Pokemon
   isFavPokemon?: boolean
-  handleFavClick: () => void
-  handleAddToCartClick: (pokemon: Pokemon) => void
+  handleFav: () => void
+  handleAddToCart: (pokemon: Pokemon) => void
+  handleDeleteItemInCart: (pokemonId: Pokemon['id']) => void
 }
-const Pokemon: React.FC<PokemonProps> = ({ pokemon, isFavPokemon, handleFavClick, handleAddToCartClick }) => {
+const Pokemon: React.FC<PokemonProps> = ({ pokemon, isFavPokemon, handleFav, handleAddToCart, handleDeleteItemInCart }) => {
+  const cart = usePokemonStorage(state => state.cart)
+  const cartItem = cart[pokemon.id]
+
+  const handleIncrement = (pokemon: Pokemon) => () => handleAddToCart(pokemon)
+
+  const handleDecrement = (pokemonId: Pokemon['id']) => () => handleDeleteItemInCart(pokemonId)
+
   return (
     <figure className='pokemon-card'>
       <img
@@ -63,11 +72,16 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemon, isFavPokemon, handleFavClick
         </div>
         <p className='pokemon-description'>{pokemon.description}</p>
         <footer className='pokemon-actions'>
-          <button onClick={() => handleAddToCartClick(pokemon)} className='add-to-cart-button'>
+          {cartItem?.quantity > 0 ? (
+            <div className='cart-buttons'>
+              <button onClick={handleIncrement(pokemon)}>+</button>
+              <span>{cartItem?.quantity}</span>
+              <button onClick={handleDecrement(pokemon.id)}>-</button>
+            </div>
+          ) : <button onClick={handleIncrement(pokemon)} className='add-to-cart-button'>
             <IconCart />
-            <span>{ }</span>
-          </button>
-          <button className='favorite-button' onClick={handleFavClick}>
+          </button>}
+          <button className='favorite-button' onClick={handleFav}>
             <IconHeart fill={isFavPokemon ? '#ff0000' : '#fff'} />
           </button>
         </footer>
@@ -80,12 +94,12 @@ function InterviewSix () {
   const [query, updatedQuery] = useState<string>('')
   const inputQueryHintId = useId()
   const { pokemons, loading } = usePokemon()
-  const cart = usePokemonStorage(state => state.cart)
+  // const cart = usePokemonStorage(state => state.cart)
   const favorites = usePokemonStorage(state => state.favorites)
 
   const hasFavs = useMemo(() => favorites.length > 0, [favorites])
 
-  const totalPokemons = useMemo(() => cart.length, [cart])
+  // const totalPokemons = useMemo(() => Object.keys(cart).length, [cart])
 
   const matchedPokemons = useMemo(() => {
     if (pokemons === null) return []
@@ -144,7 +158,7 @@ function InterviewSix () {
       </div>
 
       <footer className='footer_pokemon'>
-        <button className='nes-btn is-primary'>{totalPokemons} items (total)</button>
+        {/* <button className='nes-btn is-primary'>{totalPokemons} items (total)</button> */}
       </footer>
     </>
   )

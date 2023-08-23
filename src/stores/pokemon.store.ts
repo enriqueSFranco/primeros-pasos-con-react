@@ -4,6 +4,11 @@ import { createPokemonFavoritesSlice } from "./pokemon-favorites-slice.store"
 import { createPokemonCartSlice } from "./pokemon-cart-slice.store"
 import { Pokemon } from "@/shared/interfaces"
 
+type CartItem = {
+  item: Pokemon
+  quantity: number
+}
+
 type PokemonFavoritesSlice = {
   favorites: Pokemon[]
   isFavorite: boolean
@@ -12,9 +17,10 @@ type PokemonFavoritesSlice = {
 }
 
 type PokemonCartSlice = {
-  cart: Pokemon[]
+  cart: Record<Pokemon['id'], CartItem>
   totalToPay: number
   addToCart: (pokemon: Pokemon) => void
+  deleteItemToCart: (pokemonId: Pokemon['id']) => void
 }
 
 export const usePokemonStorage = create<PokemonFavoritesSlice & PokemonCartSlice>()(
