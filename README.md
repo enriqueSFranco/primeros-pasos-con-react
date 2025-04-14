@@ -1,177 +1,213 @@
 # Curso de React + TypeScript
 
-## Prueba técnica para Juniors y Trainees de React en Live Coding. 1
+## Prueba técnica para Juniors y Trainees de React en Live Coding
 
-APIs:
+### APIs
 
-- Facts Random: https://catfact.ninja/fact
+- **Facts Random**: [https://catfact.ninja/fact](https://catfact.ninja/fact)
+- **Imagen Random**: [https://cataas.com/cat/says/hello](https://cataas.com/cat/says/hello)
 
-- Imagen random: https://cataas.com/cat/says/hello
+Recupera un hecho aleatorio de gatos de la primera API ✅
 
-- Recupera un hecho aleatorio de gatos de la primera API ✅
+---
 
-# Ejercicios de entrevista 3 parte 1
+## Ejercicios de Entrevista 3 - Parte 1
 
-## Nivel 1
+### Nivel 1
 
 - [✅] No se muestran los productos al cargar la aplicación.
 
-## Nivel 2
+### Nivel 2
 
 - [✅] Cuando buscamos no se muestran productos.
 
-## Nivel 3
+### Nivel 3
 
-- [✅] Los productos que salen 100 o menos deben tener la clase "sale" activada.
+- [✅] Los productos que salen con un precio de 100 o menos deben tener la clase "sale" activada.
 
-## Extra
+### Extra
 
-- [✅] La aplicación tarda unos segundos hasta mostrar los productos sin mostrar un "cargando...".
+- [✅] La aplicación tarda unos segundos en mostrar los productos sin mostrar un "cargando...".
 
-## Ejercicios de entrevista 3 parte 2
+---
 
-## Nivel 1
+## Ejercicios de Entrevista 3 - Parte 2
+
+### Nivel 1
 
 - [✅] El search debe ser case insensitive.
 
-## Nivel 2
+### Nivel 2
 
 - [✅] El precio no se muestra localizado para Argentina.
 
-## Nivel 3
+### Nivel 3
 
 - [✅] Agregar un select para ordenar los resultados alfabéticamente o por precio.
 
-## Extra
+### Extra
 
 - [✅] La query y la preferencia de orden deberían persistirse al recargar la página.
 
-## Ejercicios de entrevista 3 parte final
+---
 
-## Nivel 1
+## Ejercicios de Entrevista 3 - Parte Final
 
-- [✅] Los recomendados deberían ser aleatorios no deberían cambiar cuando cambia la query.
+### Nivel 1
 
-## Nivel 2
+- [✅] Los recomendados deberían ser aleatorios y no cambiar cuando cambia la query.
 
-- [✅] El search está desfazado y además se llama muy frecuentemente.
+### Nivel 2
 
-## Nivel 3
+- [✅] El search está desfazado y se llama muy frecuentemente.
 
-- [✅] Debemos poder agregar y quitar productos a favoritos clickeandolos, los productos en favoritos deben tener la clase "fav".
+### Nivel 3
 
-## Extra
+- [✅] Debemos poder agregar y quitar productos a favoritos al hacer clic en ellos, y los productos en favoritos deben tener la clase "fav".
+
+### Extra
 
 - [✅] Los favoritos deben persistirse cuando recargamos la página.
 
-# Ejercicios de entrevista 4 parte 1
+---
 
-## Nivel 1
+## Ejercicios de Entrevista 4 - Parte 1
 
-- [✅] Hay un warning en la consola
+### Nivel 1
 
-## Nivel 2
+- [✅] Hay un warning en la consola.
 
-- [✅] La aplicación crashea al iniciar
+### Nivel 2
 
-## Nivel 3
+- [✅] La aplicación crashea al iniciar.
 
-- [✅] Nuestra función de eliminar no está implementada
+### Nivel 3
 
-## Extra
+- [✅] Nuestra función de eliminar no está implementada.
 
-- [✅] Quiero que el foco inicie en nuestro input
+### Extra
 
-# Ejercicios de entrevista 4 parte 2
+- [✅] El foco debe iniciarse en nuestro input.
 
-## Nivel 1
+---
 
-- [✅] Nuestra aplicación se recarga al agregar un elemento
+## Ejercicios de Entrevista 4 - Parte 2
 
-## Nivel 2
+### Nivel 1
 
-- [✅] Nuestro input no se limpia al agregar elementos nuevos
+- [✅] La aplicación se recarga al agregar un elemento.
 
-## Nivel 3
+### Nivel 2
 
-- [✅] Nuestra función de add no está implementada
+- [✅] Nuestro input no se limpia al agregar elementos nuevos.
 
-## Extra
+### Nivel 3
 
-- [✅] Nuestra aplicación muestra el formulario vacío por unos segundos hasta que termina de cargar
+- [✅] Nuestra función de `add` no está implementada.
 
-# Ejercicios de entrevista 4 parte final
+### Extra
 
-## Nivel 1
+- [✅] La aplicación muestra el formulario vacío por unos segundos hasta que termina de cargar.
 
-- [✅] Podemos agregar elementos vacíos
+---
 
-## Nivel 2
+## Ejercicios de Entrevista 4 - Parte Final
 
-- [✅] Se agregan elementos vacíos a pesar de tener todo bien
+### Nivel 1
 
-## Nivel 3
+- [✅] Podemos agregar elementos vacíos.
 
-- [✅] Nuestra función de toggle no está implementada
+### Nivel 2
 
-## Extra
+- [✅] Se agregan elementos vacíos a pesar de tener todo bien.
 
-- [✅] Quiero simular un delay en la carga de datos de 1 segundo
+### Nivel 3
 
-# Ejercicios de entrevista 5 parte 1
+- [✅] Nuestra función de `toggle` no está implementada.
 
-## Nivel 1
+### Extra
+
+- [✅] Simular un delay en la carga de datos de 1 segundo.
+
+---
+
+## Ejercicios de Entrevista 5 - Parte 1
+
+### Nivel 1
 
 - [✅] Debería ejecutar la función `handleKeyDown` cada vez que toco una tecla del teclado.
 
-## Nivel 2
+### Nivel 2
 
 - [✅] Debería agregar la clase `correct` si la letra está en la posición correcta en relación con la respuesta.
 
-## Nivel 3
+### Nivel 3
 
-- [✅] Solo deberia poder pasar a la siguiente palabra si escribí 5 letras.
+- [✅] Solo debería poder pasar a la siguiente palabra si escribí 5 letras.
 
-## Extra
+### Extra
 
-- [✅] Una vez que gané me permite seguir escribiendo.
+- [✅] Una vez que gane, me permite seguir escribiendo.
 
-# Ejercicios de entrevista 5 parte 2
+---
 
-## Nivel 1
+## Ejercicios de Entrevista 5 - Parte 2
 
-- [✅] Al apretar enter cuando gané debería reiniciarse el juego.
+### Nivel 1
 
-## Nivel 2
+- [✅] Al apretar enter cuando gané, debería reiniciarse el juego.
+
+### Nivel 2
 
 - [✅] Tenemos un error de linter en `handleKeyDown`.
 
-## Nivel 3
+### Nivel 3
 
-- [ ] Debería agregar la clase `present` si la letra está presente en la respuesta pero en posición incorrecta.
+- [ ] Debería agregar la clase `present` si la letra está presente en la respuesta pero en una posición incorrecta.
 
-## Extra
+### Extra
 
 - [✅] Traerse la palabra con el helper de `api`.
 
-# Ejercicios de entrevista 6 parte 1
+---
 
-- [✅] El precio debería mostrarse al lado del nombre
-- [✅] Mostrar un texto de "Cargando..." hasta que obtengamos los datos
-- [✅] Deberíamos mostrar la cantidad de elementos en el carrito en el botón flotante
-- [✅] No deberíamos poder agregar más de 3 elementos al carrito
+## Ejercicios de Entrevista 6 - Parte 1
 
-# Ejercicios de entrevista 6 parte 2
+- [✅] El precio debería mostrarse al lado del nombre.
+- [✅] Mostrar un texto de "Cargando..." hasta que obtengamos los datos.
+- [✅] Deberíamos mostrar la cantidad de elementos en el carrito en el botón flotante.
+- [✅] No deberíamos poder agregar más de 3 elementos al carrito.
 
-- [✅] Deberíamos ver el total a pagar en el botón flotante
-- [✅] Nuestro carrito no debería poder exceder los $10
-- [✅] Implementar un buscador por nombre
-- [✅] Deberíamos poder agregar y quitar elementos de favoritos
-- [✅] Los favoritos deberían persistirse al recargar la página
+---
 
-# Ejercicios de entrevista 6 parte final
+## Ejercicios de Entrevista 6 - Parte 2
 
-- [ ] Cuando agregamos un elemento a nuestro carrito, todas las cards se vuelven a renderizar
-- [✅] Cuando tengamos un elemento en el carrito, debemos reemplazar el botón de agregar por un campo que nos indique la cantidad en el carrito y dos botones, uno de incrementar y otro de decrementar, ambos botones deben funcionar
-- [✅] El carrito debería persistirse al recargar la página
-- [✅] Implementar el carrito sin arrays
+- [✅] Deberíamos ver el total a pagar en el botón flotante.
+- [✅] Nuestro carrito no debería poder exceder los $10.
+- [✅] Implementar un buscador por nombre.
+- [✅] Deberíamos poder agregar y quitar elementos de favoritos.
+- [✅] Los favoritos deberían persistirse al recargar la página.
+
+---
+
+## Ejercicios de Entrevista 6 - Parte Final
+
+### Nivel 1
+
+- [ ] Cuando agregamos un elemento a nuestro carrito, todas las cards se vuelven a renderizar.
+
+### Nivel 2
+
+- [✅] Cuando tengamos un elemento en el carrito, debemos reemplazar el botón de agregar por un campo que nos indique la cantidad en el carrito y dos botones: uno de incrementar y otro de decrementar. Ambos botones deben funcionar.
+
+### Nivel 3
+
+- [✅] El carrito debería persistirse al recargar la página.
+
+### Extra
+
+- [✅] Implementar el carrito sin arrays.
+
+---
+
+¡Listo! Ahora tu README está mucho más organizado, es fácil de leer y está mejor estructurado. Los títulos se agrupan de manera lógica, y se ha mejorado la presentación de las tareas y ejercicios para que sea más claro y visualmente agradable.
